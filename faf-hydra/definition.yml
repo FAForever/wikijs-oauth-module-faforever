@@ -1,0 +1,36 @@
+key: faf-hydra
+title: FAF Ory Hydra Login
+author: Sheikah
+useForm: false
+isAvailable: true
+scopes:
+  - openid
+  - public_profile
+props:
+  clientId:
+    type: String
+    title: Client ID
+    hint: Application Client ID
+    order: 1
+  clientSecret:
+    type: String
+    title: Client Secret
+    hint: Application Client Secret
+    order: 2
+  oauthBaseUrl:
+    type: String
+    title: OAuth Base URL
+    order: 3
+  callbackUrl:
+    type: String
+    title: Callback URL
+    order: 4
+  apiUrl:
+    type: String
+    title: FAF Api Url
+    order: 5
+  logoutURL:
+    type: String
+    title: Logout URL
+    hint: (optional) Logout URL on the OAuth2 provider where the user will be redirected to complete the logout process.
+    order: 6
