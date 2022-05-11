@@ -29,7 +29,7 @@ module.exports = {
               return cb(null)
             }
             let user = JSON.parse(body)
-            let accountPromise = WIKI.models.users.processProfile({providerKey: providerKey, profile: {id: user.data.attributes.userId, email: user.data.attributes.email, displayName: user.data.attributes.userName}})
+            let accountPromise = WIKI.models.users.processProfile({providerKey: providerKey, profile: {id: user.data.attributes.userId, email: user.data.attributes.userName + "@faforever.com", displayName: user.data.attributes.userName}})
             accountPromise.then(account => {cb(null, account)})
           }
         )
