@@ -15,7 +15,7 @@ module.exports = {
         scope: ['openid', 'public_profile'],
         passReqToCallback: true
       },
-      function (req, iss, sub, profile, jwtClaims, accessToken, refreshToken, params, verified) {
+      function (req, iss, sub, profile, jwtClaims, accessToken, refreshToken, params, cb) {
         const providerKey = req.params.strategy
         request.get(
           {
@@ -26,12 +26,11 @@ module.exports = {
             if (r.statusCode !== 200) {
               console.log('Auth failure: ' + r.statusCode)
 
-              return verified(null)
+              return cb(null)
             }
             let user = JSON.parse(body)
-            console.log(user)
             let accountPromise = WIKI.models.users.processProfile({providerKey: providerKey, profile: {id: user.data.attributes.userId, email: user.data.attributes.email, displayName: user.data.attributes.userName}})
-            accountPromise.then(account => {verified(null, account)})
+            accountPromise.then(account => {cb(null, account)})
           }
         )
       }
